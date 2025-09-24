@@ -7,7 +7,7 @@ export class CreateUser {
     async handle(req: Request, res: Response){
         try{
             
-        		const {name, cpfcnpj, email, password, userType, contact}
+        		const {name, cpfcnpj, email, password, userType, contact} = req.body
 
         		const userExists = await prisma.user.findUnique({
         			where: {
@@ -24,7 +24,7 @@ export class CreateUser {
         			data:{
         				username: `@${username}`,
         				email,
-        				cpfcpnj,
+        				cpfcnpj,
         				email,
         				password: passwordHash,
         				userType,

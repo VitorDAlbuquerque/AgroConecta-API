@@ -7,7 +7,7 @@ export class createProduct {
     async handle(req: Request, res: Response){
         try{
             
-        	const {name, quantity, price, unityType, ownerId, harvestId, imgUrl}
+        	const {name, quantity, price, unityType, ownerId, harvestId, imgUrl} = req.body
 
         	const productExists = await prisma.product.findFirst({
         		where:{
@@ -21,7 +21,7 @@ export class createProduct {
 
         	if (productExists) {
 
-        		storageQuantity = await prisma.product.findFirst({
+        		const storageQuantity = await prisma.product.findFirst({
         			where:{
         			name: name,
         			ownerId: ownerId,
@@ -32,14 +32,14 @@ export class createProduct {
         		}
         		})
 
-        		newQuantity = storageQuantity + quantity
+        		const newQuantity = storageQuantity + quantity
 
         		const updateProduct = await prisma.product.update({
         			where: {
         				name: name,
         				ownerId: ownerId,
         				harvestId: harvestId
-        			}
+        			},
         			data:{
         				quantity: newQuantity
         			}
