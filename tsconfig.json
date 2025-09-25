@@ -10,6 +10,12 @@
     "module": "commonjs",
     "target": "esnext",
     "types": [],
+    "typeRoots": [
+      "./src/@types",
+      "./custom_typings",
+      "./@types",
+      "./node_modules/@types"
+    ],   
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],

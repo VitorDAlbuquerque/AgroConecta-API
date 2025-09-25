@@ -45,16 +45,16 @@ model ADDRESS{
 }
 
 model PRODUCT{
-  id        String @id @default(uuid))
-  name      varchar(25)
-  price     float
-  imgUrl    varchar(300)
-  quantity  int
-  ownerId   varchar
-  type      int
-  harvestDate date
-  harvestType int
-  productState boolean
-  harvest   varchar
-  unityType int
+  id        String @id @default(uuid())
+  name      String
+  price     Float
+  imgUrl    String
+  quantity  Int
+  ownerId   String
+  type      Int
+  harvestDate DateTime
+  harvestType Int
+  productState Boolean
+  harvest   String
+  unityType Int
 }

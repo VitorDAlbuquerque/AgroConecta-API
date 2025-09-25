@@ -22,10 +22,9 @@ export class CreateUser {
         		const passwordHash = bcryptjs.hashSync(password, 8);
         		const newUser = await prisma.user.create({
         			data:{
-        				username: `@${username}`,
+        				name: `@${name}`,
         				email,
         				cpfcnpj,
-        				email,
         				password: passwordHash,
         				userType,
         				contact
