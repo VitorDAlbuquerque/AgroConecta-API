@@ -7,25 +7,61 @@ export class CreateProduct {
     async handle(req: Request, res: Response){
         try{
             
-        	const {name, quantity, price, unityType, harvestId, imgUrl} = req.body
+        	const {name, quantity, price, unityType, ownerId, harvestId, imgUrl} = req.body
 
+        	const productExists = await prisma.product.findFirst({
+        		where:{
+        			name: name,
+        			ownerId: ownerId,
+        			harvestId: harvestId
+        		}
+        	})
+
+
+
+        	if (productExists) {
+
+        		const storageQuantity = await prisma.product.findFirst({
+        			where:{
+        			name: name,
+        			ownerId: ownerId,
+        			harvestId: harvestId
+        		},
+        		data: {
+        			quantity
+        		}
+        		})
+
+        		const newQuantity = storageQuantity + quantity
+
+        		const updateProduct = await prisma.product.update({
+        			where: {
+        				name: name,
+        				ownerId: ownerId,
+        				harvestId: harvestId
+        			},
+        			data:{
+        				quantity: newQuantity
+        			}
+        		})
+        	}else{
         		const newProduct = await prisma.product.create({
         			data:{
         				name,
         				quantity,
         				price,
         				unityType,
-        				ownerId: req.userId,
-        				harvestId,
+        				ownerId,
+        				haverstId,
         				imgUrl
         			}
         		})
-				
+        	}
+
             return res.status(200).send({newProduct});
-			
-			}catch{
+
+        }catch{
             return res.status(500).send({err: "Error creating the product"})
         }
-    	
-	}
+    }
 }

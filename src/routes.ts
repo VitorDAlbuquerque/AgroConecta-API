@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { Login } from './controllers/users/Longinho';
 import { CreateUser } from './controllers/users/CreateUser'
 
-import { CreateProduct } from './controllers/products/CreateProduct'
+import { CreateProduct } from './controllers/products/createProduct'
 import { ListProducts } from './controllers/products/ListProducts'
 import { UpdateProduct } from './controllers/products/UpdateProduct'
 import { GetProductById } from './controllers/products/GetProductById'
