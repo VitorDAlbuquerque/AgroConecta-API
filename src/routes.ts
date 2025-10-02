@@ -43,9 +43,9 @@ router.put('/updatePassword', updatePassword.handle)
 
 router.post('/createProduct', midAthorization, createProductt.handle)
 router.get('/listProduct', listProducts.handle)
-router.put('/updateProduct', updateProduct.handle)
+router.put('/updateProduct', midAthorization, updateProduct.handle)
 router.get('/getProductById/:productId', getProductById.handle)
-router.delete('/deleteProduct/:productId', deleteProduct.handle)
+router.delete('/deleteProduct/:productId', midAthorization, deleteProduct.handle)
 
 
 export {router}
