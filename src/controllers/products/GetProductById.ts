@@ -11,6 +11,9 @@ export class GetProductById {
                     id: productId
                 }
             })
+
+            return res.status(200).json(product)
+
         }catch{
             return res.status(500).send({err: "Error get the product"})
             
