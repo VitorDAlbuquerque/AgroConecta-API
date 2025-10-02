@@ -35,9 +35,9 @@ const deleteProduct = new DeleteProduct()
 
 router.post('/login', login.handle)
 router.post('/createUser', createUser.handle)
-router.put('/updateUser', updateUser.handle)
+router.put('/updateUser', midAthorization, updateUser.handle)
 router.post('/confirmEmail', confirmEmail.handle)
-router.delete('/deleteUser/:id', deleteUser.handle)
+router.delete('/deleteUser/:id', midAthorization, deleteUser.handle)
 router.get('/getUser', getUser.handle)
 router.put('/updatePassword', updatePassword.handle)
 
